@@ -1,0 +1,74 @@
+flexible, scalable, maintainable, and reusable code
+
+1.Single Responsibility Principle (SRP)
+2.Open/Closed Principle
+3.Liskov’s Substitution Principle (LSP)
+4.Interface Segregation Principle (ISP)
+5.Dependency Inversion Principle (DIP)
+
+1. S ->
+A class should have only one reason to change
+means every class should have a single responsibility or single job or single purpose.
+
+class Marker {
+     String name;
+     String color;
+     int year;
+     int price;
+
+     public Marker(String name, String color, int year, int price){
+     this.name = name;
+     this.color = color;
+     this.year = year;
+     this.price = price;
+     }
+}
+
+class Invoice {
+     private Marker marker;
+     private int quantity;
+
+     public Invoice(Marker marker, int quantity){
+     this.marker = marker;
+     this.quantity = quantity;
+     }
+
+     public int calculateTotal() {
+     int price = (marker.price) * this.quantity;
+     return price;
+     }
+
+     public void printInvoice() {
+     // Something
+     }
+}
+
+Now here we have 2 function in class Invoice but there a two reason to change that don't follow 1st.
+Instead we have
+
+class Invoice {
+     private Marker marker;
+     private int quantity;
+
+     public Invoice(Marker marker, int quantity){
+     this.marker = marker;
+     this.quantity = quantity;
+     }
+
+     public int calculateTotal() {
+     int price = (marker.price) * this.quantity;
+     return price;
+     }
+}
+
+class printInvoice {
+     private Invoice invoice;
+
+     public printInvoice(Invoice invoice){
+     this.invoice = invoice;
+     }
+
+     public void printInvoice() {
+     // Something
+     }
+}
