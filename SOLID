@@ -72,3 +72,41 @@ class printInvoice {
      // Something
      }
 }
+
+2. OCP ->
+Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification
+means you should be able to extend a class behavior, without modifying it.
+
+class InvoiceDao {
+      Invoice invoice;
+
+      public InvoiceDao(Invoice invoice){
+      this.invoice = invoice;
+      }
+
+      public void saveToDB(){
+      // Something
+      }
+}
+
+Now new Request to Save it To File Also, Instead of adding a new function in the InvoiceDao class we will make a interface which we will implements and will add different functionality as to save the data,
+...
+
+interface InvoiceDao{
+      public void save(Invoice invoice);
+}
+
+class DatabaseInvoiceDao implements InvoiceDao{
+      @Override
+      public void save(Invoice invoice){
+       // save to DB
+      }
+}
+
+class FileInvoiceDao implements InvoiceDao{
+      @Override
+      public void save(Invoice invoice){
+       // save to File
+      }
+}
+
