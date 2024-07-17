@@ -110,3 +110,111 @@ class FileInvoiceDao implements InvoiceDao{
       }
 }
 
+3. Liskov’s Substitution Principle
+Derived or child classes must be substitutable for their base or parent classes
+means that any class that is the child of a parent class should be usable in place of its parent without any unexpected behavior.
+
+interface Bike {
+     void turnOnEngine();
+     void accelerate();
+}
+
+class Motorcycle implements Bike{
+     boolean isEngineOn;
+     int speed;
+
+     public void turnOnEngine() {
+          isEngineOn = true;
+     }
+
+     public void accelerate() {
+          speed += 10;
+     }
+}
+
+class Cycle implements Bike{
+     boolean isEngineOn;
+     int speed;
+
+     public void turnOnEngine() {
+          throw new AssertionError("there is no Engine");  (IMP)
+     }
+
+     public void accelerate() {
+          // Something
+     }
+}
+
+4. Interface Segregation Principle (ISP)
+do not force any client to implement an interface which is irrelevant to them
+means to focus on avoiding fat interface and give preference to many small client-specific interfaces.
+
+interface RestaurantEmployee {
+     void washDishes();
+     void cookFood();
+     void serverCustomer();
+}
+
+class waiter implements RestaurantEmployee {
+
+     public void washDishes(){
+        // not my job
+     }
+
+     public void cookFood(){
+        // not my job
+     }
+
+     public void serverCustomer(){
+         System.out.println("serving customer");
+     }
+}
+
+interface WaiterInterface {
+     void serverCustomer();
+     void takeOrder();
+}
+
+interface ChefInterface {
+     void cookFood();
+     void decideMenu();
+}
+
+class waiter implements WaiterInterface {
+
+     public void serverCustomer(){
+        //  my job
+     }
+
+     public void takeOrder(){
+        //  my job
+     }
+}
+
+5. Dependency Inversion Principle (DIP)
+ Class Should Depend on Interface Rather Than Concrete class
+
+
+ class MackBook {
+    private final WiredKeyboard keyboard;
+    private final WiredMouse mouse;
+
+    public MackBook(){
+    keyboard = newWiredKeyBoard;
+    mouse = newWiredMouse;
+    }
+ }
+
+
+ class MackBook {
+    private final Keyboard keyboard;
+    private final Mouse mouse;
+
+    public MackBook(Keyboard keyboard, Mouse mouse){
+    this.keyboard = KeyBoard;
+    this.mouse = Mouse;
+    }
+ }
+
+
+
