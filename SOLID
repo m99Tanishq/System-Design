@@ -215,6 +215,3 @@ class waiter implements WaiterInterface {
     this.mouse = Mouse;
     }
  }
-
-
-
